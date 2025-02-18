@@ -3,6 +3,9 @@
 const Layout = () => {
   return (
     <div>
+        Header
+
+        Footer
     </div>
   )
 }
