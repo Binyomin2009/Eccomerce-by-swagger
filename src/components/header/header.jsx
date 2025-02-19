@@ -40,7 +40,7 @@ const Header = () => {
             <FavoriteBorderIcon />
             <IconButton>
               <ShoppingCartIcon fontSize="small" />
-              <CartBadge badgeContent={9987} color="primary" overlap="circular" />
+              <CartBadge badgeContent={0} color="primary" overlap="circular" />
             </IconButton>
             <AccountCircleIcon />
           </div>
