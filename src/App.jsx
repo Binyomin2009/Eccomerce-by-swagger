@@ -1,5 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Layout from "./layout/layout"
+import About from "./pages/about/about"
+import Contact from "./pages/contact/contact"
+import Home from "./pages/home/home"
 
 
 const App = () => {
@@ -11,15 +14,19 @@ const App = () => {
       children: [
         {
           index: true,
-          element: "Home",
+          element: <Home/>,
+        },
+        {
+          path:"/products",
+          element:"Products"
         },
         {
           path: "/about",
-          element: "About"
+          element: <About/>
         },
         {
           path: "/contact",
-          element: "Contact"
+          element: <Contact/>
         }
       ]
     }

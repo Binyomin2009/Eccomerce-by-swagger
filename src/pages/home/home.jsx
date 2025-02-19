@@ -1,0 +1,75 @@
+
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Card from '../../components/card/card';
+const Home = () => {
+    return (
+        <div className='max-w-[1200px] mx-auto'>
+            <div className="flex items-center gap-4 p-4">
+                <div className="w-[250px] bg-white shadow-md p-4 rounded-lg">
+                    {[
+                        "Woman’s Fashion",
+                        "Men’s Fashion",
+                        "Electronics",
+                        "Home & Lifestyle",
+                        "Medicine",
+                        "Sports & Outdoor",
+                        "Baby’s & Toys",
+                        "Groceries & Pets",
+                        "Health & Beauty",
+                    ].map((category) => (
+                        <p key={"."} className="text-gray-700 hover:text-black cursor-pointer py-1">
+                            {category}
+                        </p>
+                    ))}
+                </div>
+
+                <Swiper
+                    modules={[Navigation]}
+                    spaceBetween={50}
+                    slidesPerView={1}
+                    navigation
+                    pagination={{ clickable: true }}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    onSlideChange={() => console.log('slide change')}
+                    className='w-[65%]'
+                >
+                    <SwiperSlide><img src="../../../src/assets/Frame 560.png" alt="" className='m-auto' /></SwiperSlide>
+                    <SwiperSlide><img src="../../../src/assets/Frame 560.png" alt="" className='m-auto' /></SwiperSlide>
+                    <SwiperSlide><img src="../../../src/assets/Frame 560.png" alt="" className='m-auto' /></SwiperSlide>
+                    <SwiperSlide><img src="../../../src/assets/Frame 560.png" alt="" className='m-auto' /></SwiperSlide>
+                </Swiper>
+            </div>
+
+            Today's
+
+            <div className="flex flex-col">
+                <h1 className='text-[30px] font-[700]'>Flash Sales</h1>
+                <div className='flex gap-[20px]'>
+                    <p>Days</p>
+                    <p>Hours</p>
+                    <p>Minutes</p>
+                    <p>Seconds</p>
+                </div>
+                <div className='flex gap-[47px]'>
+                    <p className='font-[700]'>03 :</p>
+                    <p className='font-[700]'>23 :</p>
+                    <p className='font-[700]'>19 :</p>
+                    <p className='font-[700]'>56</p>
+                </div>
+            </div>
+
+
+            <Card />
+
+        </div>
+    )
+}
+
+export default Home
