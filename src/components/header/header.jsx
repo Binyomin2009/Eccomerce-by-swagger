@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
 import Badge, { badgeClasses } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
+import { useState } from 'react';
 
 
 
@@ -21,6 +22,8 @@ const CartBadge = styled(Badge)`
 
 
 const Header = () => {
+  const [cnt, setCnt] = useState(0)
+
   return (
     <div>
       <header className='flex items-center gap-[20px] justify-around sm:flex-col'>
@@ -37,12 +40,18 @@ const Header = () => {
             <SearchIcon />
           </div>
           <div className='flex gap-[10px]'>
-            <FavoriteBorderIcon />
-            <IconButton>
-              <ShoppingCartIcon fontSize="small" />
-              <CartBadge badgeContent={0} color="primary" overlap="circular" />
-            </IconButton>
-            <AccountCircleIcon />
+            <Link to="/wishlist">
+              <FavoriteBorderIcon />
+            </Link>
+            <Link to="/cart">
+              <IconButton >
+                <ShoppingCartIcon fontSize="small" />
+                <CartBadge badgeContent={cnt} color="primary" overlap="circular" />
+              </IconButton>
+            </Link>
+            <Link to="/signup">
+              <AccountCircleIcon />
+            </Link>
           </div>
         </div>
       </header>
