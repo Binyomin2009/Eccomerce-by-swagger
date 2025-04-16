@@ -5,8 +5,8 @@ const Contact = () => {
     <div className="m-auto max-w-[1200px] p-[20px]">
       <p className="text-gray-600">Home / Contact</p>
 
-      <div className="flex justify-between sm:flex-col gap-6">
-        <div className="shadow-md w-full sm:w-auto flex flex-col gap-5 p-5">
+      <div className="flex justify-between gap-6">
+        <div className="shadow-md w-full flex flex-col gap-5 p-5">
           <div className="flex flex-col gap-4 p-6 border-b">
             <div className="flex gap-4 items-center">
               <img src="../../../src/assets/icons-phone (1).png" alt="Phone" />
@@ -14,7 +14,7 @@ const Contact = () => {
             </div>
             <p>
               We are available 24/7, 7 days a week. <br />
-              Phone: +8801611112222
+              Phone: +8801611112222 
             </p>
           </div>
 

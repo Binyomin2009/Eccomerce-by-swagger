@@ -11,7 +11,7 @@ import Card from '../../components/card/card';
 import Categories from '../../components/categories/categories';
 import Enhance from '../../components/enhance/enhance';
 import Varanty from '../../components/varanty/varanty';
-import ProductCard from '../productCard/productcard';
+import ProductCard from '../productByid/productByid';
 
 
 const Home = () => {
@@ -80,7 +80,6 @@ const Home = () => {
 
             <Enhance />
 
-            <Card />
             <Card />
             <Varanty />
         </div>

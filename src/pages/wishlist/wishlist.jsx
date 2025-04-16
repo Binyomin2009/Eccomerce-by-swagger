@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import image from "../../../src/assets/Frame 611.png";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -10,9 +11,17 @@ const Card = () => {
         { id: 3, name: "HAVIT HV-G92 Gamepad", price: "$120", img: image },
     ];
 
+
+    const [data, setData] = useState(arr)
+
+
+    function Del(id) {
+        setData(data.filter((el) => el.id !== id))
+    }
+
     return (
         <div className="flex justify-around mt-[30px] sm:flex-col sm:gap-[40px]">
-            {arr.map((el) => (
+            {data?.map((el) => (
                 <div
                     className="bg-gray-100 p-5 w-full max-w-[250px] rounded-lg relative group sm:m-auto"
                     key={el.id}
@@ -20,7 +29,9 @@ const Card = () => {
                     <img src={el.img} alt="Product" className="w-full" />
 
                     <div className="absolute top-4 right-4 flex flex-col gap-2">
-                        <DeleteIcon className="text-gray-600 hover:text-red-500 cursor-pointer transition duration-300" />
+                        <button onClick={() => Del()}>
+                            <DeleteIcon className="text-gray-600 hover:text-red-500 cursor-pointer transition duration-300" />
+                        </button>
                     </div>
 
                     <button className="bg-black text-white w-full p-2 mt-3 opacity-0 group-hover:opacity-100 transition duration-300">

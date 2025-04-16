@@ -8,8 +8,6 @@ const Products = () => {
             <Filter/>
             <div className="w-[70%] sm:w-[100%]">
                 <Card />
-                <Card />
-                <Card />
             </div>
         </div>       
     )

@@ -5,50 +5,56 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 
 const Footer = () => {
     return (
-        <div>
-            <footer className='bg-[#000000] text-[white] p-[100px] flex justify-around sm:flex-col sm:gap-[30px]'>
-                <div className="flex flex-col gap-[10px] w-[fit-content]">
-                    <p className='text-[30px]'>Exclusive</p>
-                    <p>Subscribe</p>
-                    <p>Get 10% off your first order</p>
-                    <input type="text" placeholder='Enter your email' className='bg-[#000000] border border-white p-[5px] rounded' />
-                </div>
-                <div className="flex flex-col gap-[10px]">
-                    <p className='text-[30px]'>Support</p>
-                    <p>111 Bijoy sarani, Dhaka, <br />  DH 1515, Bangladesh.</p>
-                    <p>exclusive@gmail.com</p>
-                    <p>+88015-88888-9999</p>
-                </div>
+        <>
 
+                <div className="flex sm:flex-col justify-between items-start gap-10 flex-wrap bg-[black] text-[white] p-10">
+                    <div className="flex flex-col gap-3 max-w-[250px]">
+                        <p className="text-2xl font-bold">Exclusive</p>
+                        <p>Subscribe</p>
+                        <p>Get 10% off your first order</p>
+                        <input
+                            type="text"
+                            placeholder="Enter your email"
+                            className="bg-black border border-white px-3 py-2 rounded"
+                        />
+                    </div>
 
-                <div className="flex flex-col gap-[10px]">
-                    <p className='text-[30px]'>Account</p>
-                    <p>My Account</p>
-                    <p>Cart</p>
-                    <p>Wishlist</p>
-                    <p>Shop</p>
-                </div>
+                    <div className="flex flex-col gap-2 max-w-[250px]">
+                        <p className="text-2xl font-bold">Support</p>
+                        <p>111 Bijoy Sarani, Dhaka,<br />DH 1515, Bangladesh.</p>
+                        <p>exclusive@gmail.com</p>
+                        <p>+88015-88888-9999</p>
+                    </div>
 
+                    <div className="flex flex-col gap-2">
+                        <p className="text-2xl font-bold">Account</p>
+                        <p>My Account</p>
+                        <p>Cart</p>
+                        <p>Wishlist</p>
+                        <p>Shop</p>
+                    </div>
 
-                <div className="flex flex-col gap-[10px]">
-                    <p className='text-[30px]'>Quick Link</p>
-                    <p>Privacy Policy</p>
-                    <p>Terms Of Use</p>
-                    <p>FAQ</p>
-                    <p>Contact</p>
-                </div>
-                <div className="">
-                    <p className='text-[30px]'>Social</p>
-                    <div className="flex gap-[10px]">
-                    <FacebookIcon/>
-                    <InstagramIcon/>
-                    <TwitterIcon/>
-                    <TelegramIcon/>
+                    <div className="flex flex-col gap-2">
+                        <p className="text-2xl font-bold">Quick Link</p>
+                        <p>Privacy Policy</p>
+                        <p>Terms Of Use</p>
+                        <p>FAQ</p>
+                        <p>Contact</p>
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                        <p className="text-2xl font-bold">Social</p>
+                        <div className="flex gap-3">
+                            <FacebookIcon />
+                            <InstagramIcon />
+                            <TwitterIcon />
+                            <TelegramIcon />
+                        </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-    )
-}
+        </>
 
-export default Footer
+    );
+};
+
+export default Footer;

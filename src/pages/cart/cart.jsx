@@ -1,28 +1,45 @@
-import { useState } from "react";
-import { Button, TextField, MenuItem, Select, Input } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Button, TextField, Input } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import { useLogiks } from "../../store/logiks";
+import axiosInstance from "../../../utils/axiosInstance";
 
 const Cart = () => {
-    const [cart, setCart] = useState([
-        { id: 1, name: "LCD Monitor", price: 650, quantity: 1, img: "../../../src/assets/Frame 874.png" },
-    ]);
+    const { getProductsCart, data } = useLogiks();
+    const [quantities, setQuantities] = useState({});
 
-    const [coupon, setCoupon] = useState("");
+    useEffect(() => {
+        getProductsCart();
+    }, [getProductsCart]);
 
-    const handleQuantityChange = (id, quantity) => {
-        setCart(cart.map(item => (item.id === id ? { ...item, quantity: quantity } : item)));
+    const handleDelete = async (id) => {
+        try {
+            await axiosInstance.delete(`Cart/delete-product-from-cart?id=${id}`);
+            getProductsCart();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const removeItem = (id) => {
-        setCart(cart.filter(item => item.id !== id));
+    const handleRemoveAll = async () => {
+        try {
+            await axiosInstance.delete("Cart/clear-cart");
+            getProductsCart();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const clearCart = () => {
-        setCart([]);
+    const handleQuantityChange = async (id, newQuantity) => {
+        try {
+            setQuantities((prev) => ({ ...prev, [id]: newQuantity }));
+            await axiosInstance.put(`Cart/update-quantity?id=${id}&quantity=${newQuantity}`);
+            getProductsCart();
+        } catch (error) {
+            console.error(error);
+        }
     };
-
-    const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return (
         <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -38,19 +55,31 @@ const Cart = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {cart.map((item) => (
-                        <tr key={item.id} className="border-b">
+                    {data?.map((el) => (
+                        <tr key={el.id} className="border-b">
                             <td className="p-2 flex items-center gap-2">
-                                <img src={item.img} alt={item.name} className="w-10 h-10" />
-                                {item.name}
+                                <img
+                                    src={`https://store-api.softclub.tj/images/${el?.product?.image}`}
+                                    alt={el?.product?.productName}
+                                    className="w-10 h-10"
+                                />
+                                {el?.product?.productName}
                             </td>
-                            <td className="p-2">${item.price}</td>
+                            <td className="p-2">${el?.product?.price}</td>
                             <td className="p-2">
-                                <Input type="number" style={{ width: "30px" }}></Input>
+                                <Input
+                                    type="number"
+                                    value={quantities[el.id] || 0}
+                                    onChange={(e) =>
+                                        handleQuantityChange(el.id, parseInt(e.target.value, 10))
+                                    }
+                                    inputProps={{ min: 1 }}
+                                    style={{ width: "60px" }}
+                                />
                             </td>
-                            <td className="p-2 font-bold">${item.price * item.quantity}</td>
+                            <td className="p-2 font-bold">${el?.product?.price * (quantities[el.id] || 0)}</td>
                             <td className="p-2">
-                                <Button color="error" onClick={() => removeItem(item.id)}>
+                                <Button color="error" onClick={() => handleDelete(el.id)}>
                                     <DeleteIcon />
                                 </Button>
                             </td>
@@ -59,35 +88,27 @@ const Cart = () => {
                 </tbody>
             </table>
 
-            <dixv className="flex justify-around">
-
-                <div className="flex items-center gap-4 mt-6">
-                    <TextField
-                        label="Coupon Code"
-                        variant="outlined"
-                        value={coupon}
-                        onChange={(e) => setCoupon(e.target.value)}
-                    />
+            <div className="flex justify-around mt-6">
+                <div className="flex items-center gap-4">
+                    <TextField label="Coupon Code" variant="outlined" />
                     <Button variant="outlined" color="error">
                         Apply
                     </Button>
                 </div>
 
-                <div className="mt-6 p-8 border rounded-lg w-[330px] flex flex-col gap-[10px]">
-                    <p className="text-lg">Subtotal: <span className="font-bold">${total}</span></p>
+                <div className="p-8 border rounded-lg w-[330px] flex flex-col gap-[10px]">
                     <p>Shipping: <span className="text-green-500">Free</span></p>
-                    <p className="text-xl font-bold mt-2">Total: ${total}</p>
-                    <Button variant="contained" color="error" fullWidth className="mt-4">
+                    <Button variant="contained" color="error" fullWidth>
                         Proceed to Checkout
                     </Button>
                 </div>
-            </dixv>
+            </div>
 
             <div className="flex justify-between mt-6">
                 <Link to="/">
-                <Button variant="outlined">Return To Shop</Button>
+                    <Button variant="outlined">Return To Shop</Button>
                 </Link>
-                <Button variant="outlined" color="error" onClick={clearCart}>
+                <Button variant="outlined" color="error" onClick={handleRemoveAll}>
                     Remove all
                 </Button>
             </div>
