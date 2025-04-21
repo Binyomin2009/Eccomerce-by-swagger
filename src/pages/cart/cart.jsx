@@ -30,7 +30,7 @@ const Cart = () => {
             console.error(error);
         }
     };
-
+    
     const handleQuantityChange = async (id, newQuantity) => {
         try {
             setQuantities((prev) => ({ ...prev, [id]: newQuantity }));

@@ -1,14 +1,13 @@
 import { create } from "zustand";
 import axiosInstance from "../../utils/axiosInstance";
 
-const baseUrl = "https://store-api.softclub.tj/";
 
 export const useLogiks = create((set) => ({
     data:[],
     registration: async (obj, nav) => {
         try {
             const { data } = await axiosInstance.post(`Account/register`, obj);
-            nav("/login");
+            window.location.href = "/login"
         } catch (error) {
             console.error("Registration error:", error);
         }

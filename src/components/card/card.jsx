@@ -29,7 +29,7 @@ const Card = () => {
                         className="bg-gray-100 p-5 w-full max-w-[250px] rounded-lg relative group sm:m-auto"
                         key={el.id}
                     >
-                        <Image src={el.image} alt="Product" className="w-full h-[200px]" />
+                        <img src={`https://store-api.softclub.tj/images/${el.image}`} alt="Product" className="w-full h-[200px]" />
 
                         <div className="absolute top-4 right-4 flex flex-col gap-2">
                             <FavoriteBorderIcon className="text-gray-600 hover:text-red-500 cursor-pointer transition duration-300" />
